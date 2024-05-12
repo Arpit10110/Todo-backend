@@ -3,7 +3,7 @@ export const sendcookies=(user,res,message)=>{
     const token= jwt.sign({_id: user._id},process.env.jwt_secret);
     res.cookie("token",token,{
         httpOnly: true,
-        maxAge:100*60*1000,
+        maxAge:15*60*1000,
         sameSite:process.env.Node_ENV== "Development"? "lax":"none",
         secure:process.env.Node_ENV== "Development"? false: true
     }).json({
