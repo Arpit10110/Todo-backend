@@ -47,9 +47,13 @@ export const profile= async(req,res)=>{
         })
 }
 
-export const logout = async(req,res)=>{
-    res.cookie("token","",{expires:new Date(Date.now())}).json({
-        success:true,
-        message:"Your are now logged out"
-    })
-}
+export const logout = async (req, res) => {
+    res.cookie("token", "", {
+        expires: new Date(Date.now()), // This will expire the cookie immediately
+        httpOnly: true, // More secure
+        sameSite: 'Strict' // Prevent CSRF
+    }).json({
+        success: true,
+        message: "You are now logged out"
+    });
+};
